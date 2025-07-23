@@ -11,6 +11,6 @@ import java.util.Map;
 @Setter
 public class ExpectedResponse {
     private int status;
-    private Map<String, Object> body;
-    private String message;
+    private Object body;
+    //private String message;
 }

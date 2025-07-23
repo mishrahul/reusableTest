@@ -96,6 +96,9 @@ tests:
           date: "2024-05-16"
       response:
         status: 200
-        message: "Expense entry updated"
+        body: "Expense entry updated"
 
-
+#    - name: Update Expenses By Id - Not Exists
+#      method: PUT
+#      url: http://localhost:8080/expenses/401
+#
