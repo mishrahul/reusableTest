@@ -1,0 +1,101 @@
+# tests:
+#   - name: Get All Users
+#     method: GET
+#     url: https://jsonplaceholder.typicode.com/users
+#     expectedStatus: 200
+#
+#   - name: Create User
+#     method: POST
+#     url: https://jsonplaceholder.typicode.com/users
+#     payLoad: |
+#       {
+#         "name": "John",
+#         "email": "john@example.com"
+#       }
+#     expectedStatus: 201
+tests:
+
+    - name: Create Expense 1
+      method: POST
+      url: http://localhost:8080/expenses
+      request:
+        headers:
+          Content-Type: application/json
+        body:
+          id: 1
+          description: "Shopping"
+          amount: 13
+          category: "GROCERY"
+          date: "2024-02-25"
+      response:
+        status: 201
+        body:
+          id: 1
+          description: "Shopping"
+          amount: 13
+          category: "GROCERY"
+          date: "2024-02-25"
+
+    - name: Create Expense 2
+      method: POST
+      url: http://localhost:8080/expenses
+      request:
+        headers:
+          Content-Type: application/json
+        body:
+          id: 2
+          description: "Travelling"
+          amount: 250.75
+          category: "TRAVEL"
+          date: "2024-02-13"
+      response:
+        status: 201
+        body:
+          id: 2
+          description: "Travelling"
+          amount: 250.75
+          category: "TRAVEL"
+          date: "2024-02-13"
+
+    - name: Get Expense By Id - Found
+      method: GET
+      url: http://localhost:8080/expenses/2
+      request:
+        headers:
+#           Accept: application/json
+      response:
+          status: 200
+          body:
+            id: 2
+            description: "Travelling"
+            amount: 250.75
+            category: TRAVEL
+            date: "2024-02-13"
+
+    - name: Get Expense By Id - Not Found
+      method: GET
+      url: http://localhost:8080/expenses/329
+      request:
+        headers:
+          Accept: application/json
+      response:
+        status: 404
+        body:
+
+    - name: Update Expense By Id - Exists
+      method: PUT
+      url: http://localhost:8080/expenses/2
+      request:
+        headers:
+          Content-Type: application/json
+        body:
+#          id: 2
+          description: "Travelling to NYC"
+          amount: 3690
+          category: TRAVEL
+          date: "2024-05-16"
+      response:
+        status: 200
+        message: "Expense entry updated"
+
+
