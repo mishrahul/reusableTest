@@ -12,5 +12,4 @@ import java.util.Map;
 public class ExpectedResponse {
     private int status;
     private Object body;
-    //private String message;
 }

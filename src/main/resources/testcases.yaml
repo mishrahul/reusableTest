@@ -62,7 +62,7 @@ tests:
       url: http://localhost:8080/expenses/2
       request:
         headers:
-#           Accept: application/json
+           Accept: application/json
       response:
           status: 200
           body:
@@ -98,7 +98,36 @@ tests:
         status: 200
         body: "Expense entry updated"
 
-#    - name: Update Expenses By Id - Not Exists
-#      method: PUT
-#      url: http://localhost:8080/expenses/401
-#
+    - name: Update Expense By Id - Not Exists
+      method: PUT
+      url: http://localhost:8080/expenses/401
+      request:
+        headers:
+          Content-Type: application/json
+        body:
+          description: "Paid fees"
+          amount: 1000
+          category: ACADEMIC
+          date: 2024-10-21
+      response:
+        status: 404
+        body: "No static resource Unable to update expense. No expense record found matching the given id: 401."
+
+    - name: Delete Expense By Id - Exists
+      method: DELETE
+      url: http://localhost:8080/expenses/2
+      request:
+        headers:
+      response:
+        status: 200
+        body: "Expense entry deleted"
+
+
+    - name: Delete Expense By Id - Not Exists
+      method: DELETE
+      url: http://localhost:8080/expenses/401
+      request:
+        headers:
+      response:
+        status: 404
+        body: "No static resource Unable to delete expense. No expense record found matching the given id: 401."
