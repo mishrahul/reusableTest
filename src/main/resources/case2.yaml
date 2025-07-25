@@ -1,0 +1,32 @@
+tests:
+  - name: Add prod
+    method: POST
+    url: http://localhost:8080/products
+    request:
+      headers:
+        Content-Type: application/json
+      body:
+        prodId: 1
+        productName: PC
+        price: 900
+    response:
+      status: 200
+
+
+
+  - name: Get prod
+    method: GET
+    url: http://localhost:8080/products/1
+    request:
+      headers:
+        Accept: application/json
+    response:
+      status: 200
+      body:
+        prodId: 1
+        productName: PC
+        price: 899
+
+
+
+

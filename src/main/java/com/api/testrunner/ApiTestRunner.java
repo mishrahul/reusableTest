@@ -8,7 +8,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.io.InputStream;
+import java.io.File;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -24,11 +25,22 @@ public class ApiTestRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        System.out.println(Arrays.toString(args));
+        if (args.length == 0) {
+            throw new IllegalArgumentException("excp");
+        }
+
+        String caseFilePath = args[0];
+        System.out.println(caseFilePath);
+
         ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
         TypeReference<Map<String, List<TestCase>>> typeRef = new TypeReference<>() {};
 
-        InputStream in = getClass().getClassLoader().getResourceAsStream("testcases.yaml");
-        Map<String, List<TestCase>> data = mapper.readValue(in, typeRef);
+
+        File file = new File(caseFilePath);
+
+       // InputStream in = getClass().getClassLoader().getResourceAsStream("testcases.yaml");
+        Map<String, List<TestCase>> data = mapper.readValue(file, typeRef);
 
         List<TestCase> tests = data.get("tests");
 

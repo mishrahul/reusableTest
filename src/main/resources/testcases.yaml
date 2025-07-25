@@ -14,7 +14,6 @@
 #       }
 #     expectedStatus: 201
 tests:
-
     - name: Create Expense 1
       method: POST
       url: http://localhost:8080/expenses
@@ -69,7 +68,7 @@ tests:
             id: 2
             description: "Travelling"
             amount: 250.75
-            category: TRAVEL
+            category: "TRAVEL"
             date: "2024-02-13"
 
     - name: Get Expense By Id - Not Found
@@ -92,7 +91,7 @@ tests:
 #          id: 2
           description: "Travelling to NYC"
           amount: 3690
-          category: TRAVEL
+          category: "TRAVEL"
           date: "2024-05-16"
       response:
         status: 200
@@ -107,7 +106,7 @@ tests:
         body:
           description: "Paid fees"
           amount: 1000
-          category: ACADEMIC
+          category: "ACADEMIC"
           date: 2024-10-21
       response:
         status: 404
@@ -131,3 +130,18 @@ tests:
       response:
         status: 404
         body: "No static resource Unable to delete expense. No expense record found matching the given id: 401."
+
+    - name: Filtered Search
+      method: GET
+      url: http://localhost:8080/expenses?from=2024-02-01&to=2024-02-29&category=GROCERY
+      request:
+        headers:
+          Accept: application/json
+      response:
+        status: 200
+        body:
+          - id: 1
+            description: "Shopping"
+            amount: 13.0
+            category: "GROCERY"
+            date: "2024-02-25"
