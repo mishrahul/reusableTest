@@ -27,7 +27,7 @@ public class ApiTestRunner implements CommandLineRunner {
     public void run(String... args) throws Exception {
         System.out.println(Arrays.toString(args));
         if (args.length == 0) {
-            throw new IllegalArgumentException("excp");
+            throw new IllegalArgumentException("Insufficient argument");
         }
 
         String caseFilePath = args[0];

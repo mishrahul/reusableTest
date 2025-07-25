@@ -25,7 +25,25 @@ tests:
       body:
         prodId: 1
         productName: PC
-        price: 899
+        price: 900
+
+  - name: Update
+    method: PUT
+    url: http://localhost:8080/products
+    request:
+      headers:
+        Content-Type: application/json
+      body:
+        prodId: 1
+        productName: MacBook
+        price: 1290
+    response:
+      status: 200
+      body:
+        prodId: 1
+        productName: MacBook
+        price: 1290
+
 
 
 
