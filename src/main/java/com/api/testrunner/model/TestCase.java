@@ -1,6 +1,8 @@
-package com.api.testrunner;
+package com.api.testrunner.model;
 
 
+import com.api.testrunner.request.RequestData;
+import com.api.testrunner.response.ExpectedResponse;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;

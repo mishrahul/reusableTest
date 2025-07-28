@@ -1,5 +1,7 @@
-package com.api.testrunner;
+package com.api.testrunner.service;
 
+import com.api.testrunner.model.TestCase;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.*;
@@ -143,7 +145,12 @@ public class ApiExecuterService {
                     "\nTest Name: %s \nResult: Passed \nActual status code: %d\n",
                     test.getName(), test.getResponse().getStatus());
 
-        } catch (Exception e) {
+        }
+        catch (JsonProcessingException e) {
+            System.out.println("\n"+e.getMessage()+"\n");
+        }
+
+        catch (Exception e) {
             System.out.printf("\n%s: EXCEPTION: %s\n", test.getName(), e.getMessage());
         }
     }

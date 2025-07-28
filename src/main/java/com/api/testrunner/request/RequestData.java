@@ -1,4 +1,4 @@
-package com.api.testrunner;
+package com.api.testrunner.request;
 
 
 import lombok.Getter;
